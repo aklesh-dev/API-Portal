@@ -3,7 +3,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   //// baseURL: "/api",
-  baseURL: import.meta.env.VITE_API_URL || "http://124.41.227.48:8099",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 // Request Interceptor to attach the token
