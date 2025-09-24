@@ -63,7 +63,6 @@ export const useNID = (params: NIDParams | null) => {
 
 // Fetch pan data.
 export const usePan = (pan_no: PANID["pan_no"] | null) => {
-  // const isValid = pan_no ? panidSchema.safeParse(pan_no).success : false;
   return useQuery({
     queryKey: ["pan_no", pan_no],
     queryFn: () => getPanNo(pan_no!),
@@ -78,8 +77,6 @@ export const useVoter = ({ voter_id, dob, citizenship_no }: Voter) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     Object.entries({ voter_id, dob, citizenship_no }).filter(([_, v]) => v)
   ) as Voter;
-
-  // console.log("Voter payload:", payload);
 
   return useQuery({
     queryKey: ["voter", voter_id, dob, citizenship_no],
@@ -152,7 +149,6 @@ export const useLogin = () => {
     onSuccess: (data) => {
       sessionStorage.setItem("token", data.access_token);
       sessionStorage.setItem("token_type", data.token_type);
-      // queryClient.invalidateQueries({ queryKey: ["user"] });
       queryClient.refetchQueries({ queryKey: ["user"], exact: true });
     },
     onError: (error) => {
@@ -181,7 +177,6 @@ export const useLogout = () => {
     mutationFn: logout,
     onSuccess: () => {
       sessionStorage.clear();
-      // queryClient.invalidateQueries({queryKey: ["user"]})
       queryClient.setQueryData(["user"], null);
       toast.success("Logout successfully.");
       navigate(`/login`);
