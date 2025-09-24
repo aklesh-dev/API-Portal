@@ -184,7 +184,7 @@ export const useLogout = () => {
       // queryClient.invalidateQueries({queryKey: ["user"]})
       queryClient.setQueryData(["user"], null);
       toast.success("Logout successfully.");
-      navigate(`/auth`);
+      navigate(`/login`);
     },
     onError: (error: any) => {
       toast.error(error?.message);
